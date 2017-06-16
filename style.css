@@ -39,12 +39,23 @@ flex-direction: column-reverse;
   justify-content: center;
   align-items: center;
   grid-row:1/2;
+  flex-wrap:wrap;
 }
 .heading{
   color:#e29d06;
   font-size:2em;
   position:absolute;
   top:0
+}
+.new_game:focus,.new_game:hover{
+  color:#20a51c;
+  cursor: pointer;
+  transition:all 0.3s ease-in-out;
+}
+.information,.new_game{
+  font-size:2em;
+  color:#e29d06;
+  width:100%;
 }
 .answers{
 display:flex;
