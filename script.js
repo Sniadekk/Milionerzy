@@ -115,6 +115,7 @@ function changing_questions() {       // funkcja losująca pytania
 };
 
 function win() {
+  var awards=['100zł','500zł','5000zł','10000zł','25000zł','50000zł','100000zł','2500000zł','5000000zł','10000000zł'];
   win_score++;  //inkrementujemy wynik
   this_is.classList.remove('active_answer');    // jako iż funkcja ta zachodzi po kliknięciu i sprawdzeniu czy dana odpowiedź jest poprawna, usuwany jest kolor dodany podczas zaznaczenia odpowiedzi
   active_buttons(); //aktywowanie przycisków żeby można było je kliknąć, zapobiega to wielokrotnemu wyborowi odpowiedzi w czasie dwu sekundowej przerwy
@@ -124,9 +125,14 @@ function win() {
   making_things_clear();  //resetowanie gry, możliwość ponownego używania pytań, win_score ustawiony na 0
     return;
   }
+  if(window.matchMedia("(max-width:960px)").matches){
+    getting_prize.textContent='Twoja aktualna wygrana to:'+awards[win_score];
+  }
+  else{
   for (i = 0; i < win_score; i++) { //zwiększanie nagrody
     getting_awards[i].classList.add('active');
   };
+};
   changing_questions(); //zmiana pytania
 };
 
@@ -150,12 +156,12 @@ function buttons() {  //dodawanie on clicków do przycisków
           this.classList.add('active_answer');    //chwilowy kolorek po kliknięciu
           this_is=this;   //przekazanie aktualnego przycisku do global scope'a
           disable_buttons();    //zapobiegnięcie kilkukrotnemu kliknięciu
-          setTimeout('win()',2000);   //małe opóźnienie gry
+          setTimeout('win()',1000);   //małe opóźnienie gry
         } else {  //zła odpowiedź
           this_is=this; //przekazanie do global scope
           this.classList.add('bad_answer'); //chwilowy kolorek
           disable_buttons();    //zapobiegnięcie kilkukrotnemu kliknieciu
-          setTimeout('lose()',2000);  //małe opóźnienie
+          setTimeout('lose()',1000);  //małe opóźnienie
         };
       });
     };
